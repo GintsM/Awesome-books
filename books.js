@@ -17,27 +17,28 @@ function addBook() {
   const bookToStore = {
     title: readTitle.value,
     author: readAuthor.value,
-  }
+  };
   arrayBooks.push(bookToStore);
   setToLocalStorage(arrayBooks);
 }
 
 function addToPage(book) {
-    placeToAddBook.innerHTML += `
-    <div class="myDiv">
-      <h4 class="title">"${book.title}" By ${book.author}</h4>
-      <button class="remove">Remove</button>
-    </div>`;
+  placeToAddBook.innerHTML += `
+  <div class="myDiv">
+    <h4 class="title">"${book.title}" By ${book.author}</h4>
+    <button class="remove">Remove</button>
+  </div>
+  <hr>`;
 }
 
-if(localStorage.getItem('books')) {  
+if (localStorage.getItem('books')) {
   setFromLocalStorage();
   arrayBooks.forEach((book) => {
     addToPage(book);
   });
 }
 
-function removeElement(index) {  
+function removeElement(index) {
   arrayBooks.splice(index, 1);
   setToLocalStorage(arrayBooks);
   window.location.reload(false);
@@ -49,7 +50,7 @@ addButton.addEventListener('click', addBook);
 
 // Remove book button and event
 const allRemoveBtn = document.querySelectorAll('.remove');
-removeButtons = Array.from(allRemoveBtn);
-removeButtons.forEach((book) =>book.addEventListener('click', () => {
+const removeButtons = Array.from(allRemoveBtn);
+removeButtons.forEach((book) => book.addEventListener('click', () => {
   removeElement(removeButtons.indexOf(book));
 }));
