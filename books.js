@@ -11,12 +11,12 @@ let arrayBooks = [
   {
     title: 'Lord',
     author: 'Master',
-  }
+  },
 ];
 
 function setFromLocalStorage() {
   arrayBooks = [];
-  const fromLocal = JSON.parse(localStorage.getItem('books'))
+  const fromLocal = JSON.parse(localStorage.getItem('books'));
   fromLocal.forEach((elem) => arrayBooks.push(elem));
   // arrayBooks.push(fromLocal);
 }
