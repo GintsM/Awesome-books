@@ -3,10 +3,22 @@ const readTitle = document.querySelector('#title');
 const readAuthor = document.querySelector('#author');
 
 // Array for storing a books
-let arrayBooks = [];
+let arrayBooks = [
+  {
+    title: 'Dzivo zali',
+    author: 'Upotis',
+  },
+  {
+    title: 'Lord',
+    author: 'Master',
+  }
+];
 
 function setFromLocalStorage() {
-  arrayBooks = JSON.parse(localStorage.getItem('books'));
+  arrayBooks = [];
+  const fromLocal = JSON.parse(localStorage.getItem('books'))
+  fromLocal.forEach((elem) => arrayBooks.push(elem));
+  // arrayBooks.push(fromLocal);
 }
 
 function setToLocalStorage(books) {
@@ -36,12 +48,19 @@ if (localStorage.getItem('books')) {
   arrayBooks.forEach((book) => {
     addToPage(book);
   });
+} else {
+  arrayBooks.forEach((book) => {
+    addToPage(book);
+  });
 }
 
 function removeElement(index) {
   arrayBooks.splice(index, 1);
   setToLocalStorage(arrayBooks);
   window.location.reload(false);
+  if (arrayBooks.length < 1) {
+    localStorage.clear();
+  }
 }
 
 // Add book button and event
