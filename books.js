@@ -7,7 +7,6 @@ class Book {
 }
 /* eslint-enable */
 class Build {
-
   // Create array to store elements
   static getFromLocalStore() {
     let book;
@@ -74,7 +73,7 @@ class Build {
   }
 }
 
-// Starts here 
+// Starts here
 Build.addToarray();
 
 // Add book from Screen
