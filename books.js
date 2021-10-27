@@ -1,10 +1,11 @@
+/* eslint-disable */
 class Book {
   constructor(title, author) {
-      this.title = title;
-      this.author = author;
-    }
+    this.title = title;
+    this.author = author;
+  }
 }
-
+/* eslint-enable */
 class Build {
 
   // Create array to store elements
@@ -20,7 +21,7 @@ class Build {
 
   // Add to LocalStorage
   static addToLocalStore(book) {
-    let storedBooks = Build.getFromLocalStore();
+    let storedBooks = Build.getFromLocalStore();// eslint-disable-line
     storedBooks.push(book);
     localStorage.setItem('book', JSON.stringify(storedBooks));
     window.location.reload(false);
@@ -34,8 +35,8 @@ class Build {
 
   // Remove from LocalStorage
   static removeBook(target, index) {
-    let storedBooks = Build.getFromLocalStore();
-    storedBooks.splice(index, 1);   
+    let storedBooks = Build.getFromLocalStore();// eslint-disable-line
+    storedBooks.splice(index, 1);
     localStorage.setItem('book', JSON.stringify(storedBooks));
     target.parentElement.remove();
   }
@@ -73,7 +74,6 @@ class Build {
   }
 }
 
-//End of Class Build
 // Starts here 
 Build.addToarray();
 
@@ -87,9 +87,9 @@ addBook.addEventListener('click', (e) => {
     Build.fillMessage();
   } else {
     const newBook = new Book(title.value, author.value);
-  Build.drawPage(newBook);
-  Build.clearForm();
-  Build.addToLocalStore(newBook);
+    Build.drawPage(newBook);
+    Build.clearForm();
+    Build.addToLocalStore(newBook);
   }
 });
 
