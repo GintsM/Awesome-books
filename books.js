@@ -1,76 +1,102 @@
-const placeToAddBook = document.querySelector('.bookList');
-const readTitle = document.querySelector('#title');
-const readAuthor = document.querySelector('#author');
-
-// Array for storing a books TRANSFORME TO CLASS CONSTRUCTOR
-let arrayBooks = [
-  {
-    title: 'Dzivo zali',
-    author: 'Upotis',
-  },
-  {
-    title: 'Lord',
-    author: 'Master',
-  },
-];
-
-function setFromLocalStorage() {
-  arrayBooks = [];
-  const fromLocal = JSON.parse(localStorage.getItem('books'));
-  fromLocal.forEach((elem) => arrayBooks.push(elem));
-  // arrayBooks.push(fromLocal);
+class Book {
+  constructor(title, author) {
+      this.title = title;
+      this.author = author;
+    }
 }
 
-function setToLocalStorage(books) {
-  localStorage.setItem('books', JSON.stringify(books));
-}
+class Build {
 
-function addBook() {
-  const bookToStore = {
-    title: readTitle.value,
-    author: readAuthor.value,
-  };
-  arrayBooks.push(bookToStore);
-  setToLocalStorage(arrayBooks);
-}
+  // Create array to store elements
+  static getFromLocalStore() {
+    let book;
+    if (localStorage.getItem('book')) {
+      book = JSON.parse(localStorage.getItem('book'));
+    } else {
+      book = [];
+    }
+    return book;
+  }
 
-function addToPage(book) {
-  placeToAddBook.innerHTML += `
-  <div class="myDiv">
-    <h4 class="title">"${book.title}" By ${book.author}</h4>
-    <button class="remove">Remove</button>
-  </div>
-  <hr>`;
-}
+  // Add to LocalStorage
+  static addToLocalStore(book) {
+    let storedBooks = Build.getFromLocalStore();
+    storedBooks.push(book);
+    localStorage.setItem('book', JSON.stringify(storedBooks));
+  }
 
-// SHOULD THINK THROUGH HOW TO RUN PROGRAMM AND WHEN CHECK
-if (localStorage.getItem('books')) {
-  setFromLocalStorage();
-  arrayBooks.forEach((book) => {
-    addToPage(book);
-  });
-} else {
-  arrayBooks.forEach((book) => {
-    addToPage(book);
-  });
-}
+  // Add book to array
+  static addToarray() {
+    const arrayBooks = Build.getFromLocalStore();
+    arrayBooks.forEach((book) => Build.drawPage(book));
+  }
 
-function removeElement(index) {
-  arrayBooks.splice(index, 1);
-  setToLocalStorage(arrayBooks);
-  window.location.reload(false);
-  if (arrayBooks.length < 1) {
-    localStorage.clear();
+  // Remove from LocalStorage
+  static remFrLocSt(title) {
+    let storedBooks = Build.getFromLocalStore();
+    storedBooks.forEach((book, index) =>{
+      if (book.title === title){
+        storedBooks.splice(index, 1);
+      }
+    } );    
+    localStorage.setItem('book', JSON.stringify(storedBooks));
+  }
+  static removeBook(target) {
+    if (target.classList.contains('remove')) {
+      target.parentElement.remove();
+    }
+  }
+
+  // Display on a page
+  static drawPage(book) {
+    const div = document.createElement('div');
+    div.classList.add('book-container');
+    div.innerHTML = `
+      <h4 class="title">"${book.title}" By ${book.author}</h4>
+      <button class="remove">Remove</button>
+      <hr>`;
+    const atPlace = document.querySelector('#bookList');
+    atPlace.appendChild(div);
+  }
+
+  static clearForm() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+  }
+
+  static fillMessage() {
+    const message = document.createElement('span');
+    message.classList.add('message');
+    const messageParent = document.querySelector('body > form:nth-child(3)');
+    const messageSibling = document.querySelector('#addBook');
+    messageParent.insertBefore(message, messageSibling);
+    message.textContent = 'Please fill all fields';
+    // setTimeout(() => document.querySelector('.message').remove(), 4000);
   }
 }
 
-// Add book button and event
-const addButton = document.querySelector('#addBook');
-addButton.addEventListener('click', addBook);
+//End of Class Build
+// Starts here 
+Build.addToarray();
 
-// Remove book button and event
-const allRemoveBtn = document.querySelectorAll('.remove');
-const removeButtons = Array.from(allRemoveBtn);
-removeButtons.forEach((book) => book.addEventListener('click', () => {
-  removeElement(removeButtons.indexOf(book));
+// Add book from Screen
+const addBook = document.querySelector('#addBook');
+addBook.addEventListener('click', (e) => {
+  e.preventDefault();
+  const title = document.querySelector('#title');
+  const author = document.querySelector('#author');
+  if (title.value === '' || author.value === '') {
+    Build.fillMessage();
+  } else {
+    const newBook = new Book(title.value, author.value);
+  Build.drawPage(newBook);
+  Build.clearForm();
+  Build.addToLocalStore(newBook);
+  }
+});
+
+// Remove book from a list
+const removeBtn = Array.from(document.querySelectorAll('.remove'));
+removeBtn.forEach((btn) => btn.addEventListener('click', () => {
+  alert('I\'m close to finish!!!');
 }));
