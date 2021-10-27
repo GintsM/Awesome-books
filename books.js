@@ -2,7 +2,7 @@ const placeToAddBook = document.querySelector('.bookList');
 const readTitle = document.querySelector('#title');
 const readAuthor = document.querySelector('#author');
 
-// Array for storing a books
+// Array for storing a books TRANSFORME TO CLASS CONSTRUCTOR
 let arrayBooks = [
   {
     title: 'Dzivo zali',
@@ -43,6 +43,7 @@ function addToPage(book) {
   <hr>`;
 }
 
+// SHOULD THINK THROUGH HOW TO RUN PROGRAMM AND WHEN CHECK
 if (localStorage.getItem('books')) {
   setFromLocalStorage();
   arrayBooks.forEach((book) => {
