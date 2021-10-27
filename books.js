@@ -99,4 +99,3 @@ addBook.addEventListener('click', (e) => {
 const removeBtn = Array.from(document.querySelectorAll('.remove'));
 removeBtn.forEach((btn) => btn.addEventListener('click', () => {
   alert('I\'m close to finish!!!');
-}));
