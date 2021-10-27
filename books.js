@@ -23,6 +23,7 @@ class Build {
     let storedBooks = Build.getFromLocalStore();
     storedBooks.push(book);
     localStorage.setItem('book', JSON.stringify(storedBooks));
+    window.location.reload(false);
   }
 
   // Add book to array
@@ -32,20 +33,17 @@ class Build {
   }
 
   // Remove from LocalStorage
-  static remFrLocSt(title) {
+  static removeBook(target, index) {
     let storedBooks = Build.getFromLocalStore();
-    storedBooks.forEach((book, index) =>{
-      if (book.title === title){
-        storedBooks.splice(index, 1);
-      }
-    } );    
+    storedBooks.splice(index, 1);   
     localStorage.setItem('book', JSON.stringify(storedBooks));
+    target.parentElement.remove();
   }
-  static removeBook(target) {
-    if (target.classList.contains('remove')) {
-      target.parentElement.remove();
-    }
-  }
+  // static removeBook(target) {
+  //   if (target.classList.contains('remove')) {
+  //     target.parentElement.remove();
+  //   }
+  // }
 
   // Display on a page
   static drawPage(book) {
@@ -71,7 +69,7 @@ class Build {
     const messageSibling = document.querySelector('#addBook');
     messageParent.insertBefore(message, messageSibling);
     message.textContent = 'Please fill all fields';
-    // setTimeout(() => document.querySelector('.message').remove(), 4000);
+    setTimeout(() => document.querySelector('.message').remove(), 4000);
   }
 }
 
@@ -97,5 +95,6 @@ addBook.addEventListener('click', (e) => {
 
 // Remove book from a list
 const removeBtn = Array.from(document.querySelectorAll('.remove'));
-removeBtn.forEach((btn) => btn.addEventListener('click', () => {
-  alert('I\'m close to finish!!!');
+removeBtn.forEach((btn) => btn.addEventListener('click', (btn) => {
+  Build.removeBook(btn.target, removeBtn.indexOf(btn));
+}));
