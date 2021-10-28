@@ -23,7 +23,6 @@ class Build {
     let storedBooks = Build.getFromLocalStore();// eslint-disable-line
     storedBooks.push(book);
     localStorage.setItem('book', JSON.stringify(storedBooks));
-    window.location.reload(false);
   }
 
   // Add book to array
@@ -37,22 +36,20 @@ class Build {
     let storedBooks = Build.getFromLocalStore();// eslint-disable-line
     storedBooks.splice(index, 1);
     localStorage.setItem('book', JSON.stringify(storedBooks));
-    target.parentElement.remove();
+    target.parentElement.parentElement.remove();
   }
-  // static removeBook(target) {
-  //   if (target.classList.contains('remove')) {
-  //     target.parentElement.remove();
-  //   }
-  // }
 
   // Display on a page
   static drawPage(book) {
     const div = document.createElement('div');
     div.classList.add('book-container');
     div.innerHTML = `
-      <h4 class="title">"${book.title}" By ${book.author}</h4>
-      <button class="remove">Remove</button>
-      <hr>`;
+      <div class="heading">
+        <h4>"${book.title}" By ${book.author}</h4>
+      </div>
+      <div class="button heading">
+        <button class="remove">Remove</button>
+      </div>`;
     const atPlace = document.querySelector('#bookList');
     atPlace.appendChild(div);
   }
@@ -65,7 +62,7 @@ class Build {
   static fillMessage() {
     const message = document.createElement('span');
     message.classList.add('message');
-    const messageParent = document.querySelector('body > form:nth-child(3)');
+    const messageParent = document.querySelector('#submitBtn');
     const messageSibling = document.querySelector('#addBook');
     messageParent.insertBefore(message, messageSibling);
     message.textContent = 'Please fill all fields';
@@ -94,6 +91,6 @@ addBook.addEventListener('click', (e) => {
 
 // Remove book from a list
 const removeBtn = Array.from(document.querySelectorAll('.remove'));
-removeBtn.forEach((btn) => btn.addEventListener('click', (btn) => {
-  Build.removeBook(btn.target, removeBtn.indexOf(btn));
+removeBtn.forEach((btn) => btn.addEventListener('click', (e) => {
+  Build.removeBook(e.target, removeBtn.indexOf(btn));
 }));
