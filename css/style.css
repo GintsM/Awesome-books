@@ -37,6 +37,10 @@ section {
   border-bottom: 1px solid #9f9fb6;
 }
 
+div.book-container:nth-child(odd) {
+  background-color: #bdbaba;
+}
+
 .heading {
   display: flex;
   align-items: center;
