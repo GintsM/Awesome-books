@@ -5,15 +5,39 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gints Awesome Book</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style></style>
 </head>
-<body>
-  <h1>Awesome Books</h1>
-  <div id="bookList"></div>
-  <form action="" method="get">
-    <input id="title" type="text" placeholder="Title" required>
-    <input id="author" type="text" placeholder="Author" required>
-    <button id="addBook" type="submit">Add</button>
-  </form>
+<body class="dfcacenter">
+  <header></header>
+  <section id="list" class="dfcacenter">
+    <h1 class="sameStyle">All awesome books</h1>
+    <div id="bookList" class="width85">
+      <!--this part will be removed only for work examplle-->
+      <div class="book-container">
+        <div class="heading">
+          <h4>"Book" by Vi</h4>
+        </div>
+        <div class="button heading">
+          <button class="remove">Remove</button>
+        </div>
+      </div>
+      <!--Up to here remove-->
+    </div>
+    <hr>
+  </section>
+  <section id="add-book" class="dfcacenter">
+    <h2 class="sameStyle">Add a new book</h2>
+    <form action="" method="get" class="dfcacenter width85">
+      <input id="title" class="inputElements" type="text" placeholder="Title" required>
+      <input id="author" class="inputElements" type="text" placeholder="Author" required>
+      <div id="submitBtn" class="inputElements">
+        <button id="addBook" type="submit">Add</button>
+      </div>
+    </form>
+  </section>
+  <section id="contact" class="dfcacenter"></section>
+  <footer></footer>
   <script src="books.js"></script>
 </body>
 </html>
