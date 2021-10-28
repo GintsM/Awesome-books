@@ -2,7 +2,6 @@ body {
   background-image: url(/images/img-bg.jpg);
   background-position: center;
   background-size: cover;
-  /* height: 100; */
   color: #fff;
 }
 
@@ -35,7 +34,6 @@ section {
   background-color: #fff;
   color: #000;
   padding: 0 1rem;
-  /* margin-top: 2rem; */
   border-bottom: 1px solid #9f9fb6;
 }
 
