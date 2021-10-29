@@ -5,15 +5,55 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gints Awesome Book</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="http://fonts.cdnfonts.com/css/sumana" rel="stylesheet">
 </head>
-<body>
-  <h1>Awesome Books</h1>
-  <div id="bookList"></div>
-  <form action="" method="get">
-    <input id="title" type="text" placeholder="Title" required>
-    <input id="author" type="text" placeholder="Author" required>
-    <button id="addBook" type="submit">Add</button>
-  </form>
+<body class="dfcacenter">
+  <header>
+    <nav class="links">
+      <div class="logo">
+        <a href="index.html" id="logo"><strong>Awesome Books</strong></a>
+      </div>        
+      <ul class="links">
+        <li><a>List</a></li>
+        <li><a>Add</a></li>
+        <li><a>Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="list" class="dfcacenter">
+    <h1 class="sameStyle">All awesome books</h1>
+    <div id="bookList" class="width85">
+    </div>
+    <hr>
+  </section>
+  <section id="add-book" class="dfcacenter hide">
+    <h2 class="sameStyle">Add a new book</h2>
+    <div class="formHolder width85">
+      <form action="" method="get" class="dfcacenter">
+        <input id="title" class="inputElements" type="text" placeholder="Title" required>
+        <input id="author" class="inputElements" type="text" placeholder="Author" required>
+        <div id="submitBtn" class="inputElements">
+          <button id="addBook" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section id="contact" class="dfcacenter hide">
+    <h2 class="sameStyle">Contact information</h2>
+    <div class="dfcacenter">
+      <h5>Do You have any questions, or you just want to say "Hello" <br> You can reach out to us!</h5>
+      <ul class="contactDetails">
+        <li>Our email:gintsmisins@gmail.com</li>
+        <li>Our adress: Somwhere in the middle in Jelgava </li>
+        <li>Our phonenumber:000371 200 300 4001</li>
+      </ul>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; Copyright 2021 GintsM</p>
+  </footer>  
+  <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js" crossorigin="anonymous"></script>
   <script src="books.js"></script>
 </body>
 </html>
