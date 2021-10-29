@@ -144,16 +144,16 @@ footer > p {
   body {
     background-color: rgb(97, 10, 10);
   }
-  
+
   header {
     width: 70%;
     background-color: #fff;
   }
-  
-  section { 
+
+  section {
     width: 60%;
   }
-  
+
   footer {
     width: 70%;
   }

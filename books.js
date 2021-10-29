@@ -74,7 +74,8 @@ class Build {
   static dislpayProper(index) {
     const sections = Array.from(document.querySelectorAll('section'));
     if (!sections[index].classList.contains('hide')) {
-      alert('You are in ' + sections[index].id.toUpperCase() + ' section Already');
+
+      //Here will be function to show msg if you are already in that sect.
     } else {
       sections.forEach((section) => {
         if (!section.classList.contains('hide')) {
@@ -85,20 +86,19 @@ class Build {
         window.location.reload(false);
       }
       sections[index].classList.toggle('hide');
-      Build.showTime(sections[index]);
-      
+      Build.showTime(sections[index]);      
     }
   }
 
   // Show a time
   static showTime(parent) {
     if (!parent.lastElementChild.hasAttribute('id')) {
-      const DateTime = luxon.DateTime;
+      const DateTime = luxon.DateTime;// eslint-disable-line
       const timeSpan = document.createElement('span');
       timeSpan.setAttribute('id', 'time');
       parent.appendChild(timeSpan);
-      setInterval(() => {timeSpan.innerHTML = `${DateTime.now().toLocaleString(DateTime.DATETIME_MED)}`}, 1000);
-    }    
+      setInterval(() => { timeSpan.innerHTML = `${DateTime.now().toLocaleString(DateTime.DATETIME_MED)}`; }, 1000);
+    }
   }
 }
 
