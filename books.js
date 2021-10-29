@@ -69,13 +69,14 @@ class Build {
     message.textContent = 'Please fill all fields';
     setTimeout(() => document.querySelector('.message').remove(), 4000);
   }
+  /* eslint-disable */
 
   // Display only one Section, IF YOU ARE IN funct upgrade
   static dislpayProper(index) {
     const sections = Array.from(document.querySelectorAll('section'));
-    if (!sections[index].classList.contains('hide')) {
+    if (!sections[index].classList.contains('hide')) {      
 
-      //here will be function to show msg if you are in that section// eslint-disable-linegit
+      //here will be function to show msg if you are in that section
     } else {
       sections.forEach((section) => {
         if (!section.classList.contains('hide')) {
@@ -84,11 +85,12 @@ class Build {
       });
       if (index === 0) {
         window.location.reload(false);
-      }
+      }      
       sections[index].classList.toggle('hide');
       Build.showTime(sections[index]);
     }
   }
+  /* eslint-enable */
 
   // Show a time
   static showTime(parent) {
