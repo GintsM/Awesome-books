@@ -44,10 +44,10 @@ class Build {
     const div = document.createElement('div');
     div.classList.add('book-container');
     div.innerHTML = `
-      <div class="heading">
+      <div class="heading flexwide">
         <h4>"${book.title}" By ${book.author}</h4>
       </div>
-      <div class="button heading">
+      <div class="button heading flexnarow">
         <button class="remove">Remove</button>
       </div>`;
     const atPlace = document.querySelector('#bookList');
@@ -68,10 +68,38 @@ class Build {
     message.textContent = 'Please fill all fields';
     setTimeout(() => document.querySelector('.message').remove(), 4000);
   }
+
+  // Display only one Section, IF YOU ARE IN funct upgrade
+  static dislpayProper(index) {
+    const sections = Array.from(document.querySelectorAll('section'));
+    if (!sections[index].classList.contains('hide')) {
+      alert('You are in ' + sections[index].id.toUpperCase() + ' section Already');
+    } else {
+      sections.forEach((section) => {
+        if (!section.classList.contains('hide')) {
+          section.classList.toggle('hide');
+        }
+      });
+      sections[index].classList.toggle('hide');
+      Build.showTime(sections[index]);
+    }
+  }
+
+  // Show a time
+  static showTime(parent) {
+    if (!parent.lastElementChild.hasAttribute('id')) {
+      const DateTime = luxon.DateTime;
+      const timeSpan = document.createElement('span');
+      timeSpan.setAttribute('id', 'time');
+      parent.appendChild(timeSpan);
+      setInterval(() => { timeSpan.innerHTML = `${DateTime.now().toLocaleString(DateTime.DATETIME_MED)}`; }, 1000);
+    }    
+  }
 }
 
 // Starts here
 Build.addToarray();
+Build.showTime(document.getElementById('list'));
 
 // Add book from Screen
 const addBook = document.querySelector('#addBook');
@@ -93,4 +121,10 @@ addBook.addEventListener('click', (e) => {
 const removeBtn = Array.from(document.querySelectorAll('.remove'));
 removeBtn.forEach((btn) => btn.addEventListener('click', (e) => {
   Build.removeBook(e.target, removeBtn.indexOf(btn));
+}));
+
+// Select and apply eventlistener on navigation elements and read index in array
+const navigation = Array.from(document.querySelectorAll('ul.links > li'));
+navigation.forEach((link) => link.addEventListener('click', () => {
+  Build.dislpayProper(navigation.indexOf(link));
 }));
