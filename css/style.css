@@ -1,6 +1,6 @@
 body {
-  background-color: #fff;
   font-family: 'Sumana', sans-serif;
+  margin: auto;
 }
 
 header {
@@ -20,6 +20,10 @@ nav.links {
   width: 95%;
 }
 
+.logo {
+  margin-left: 2%;
+}
+
 a {
   text-decoration: none;
 }
@@ -33,7 +37,7 @@ ul.links {
 #time {
   position: absolute;
   top: 0;
-  right: 2%;
+  right: 4%;
   padding: 1% 4%;
   font-weight: 600;
   font-size: 12px;
@@ -47,8 +51,8 @@ ul.links {
 
 section {
   position: relative;
-  width: 100%;
-  height: 95vh;
+  width: 90%;
+  height: 79vh;
   padding: 5%;
   background-color: #e7e4e4;
 }
@@ -60,7 +64,7 @@ section {
 
 .width85 {
   width: 85%;
-  border: 2px solid #f8bcf8;;
+  border: 2px solid #f8bcf8;
 }
 
 div.book-container:nth-child(even) {
@@ -71,7 +75,6 @@ div.book-container:nth-child(even) {
   display: flex;
   justify-content: space-between;
   background-color: #e9d9e9;
-  /* border-bottom: 1px solid #9f9fb6; */
   padding-right: 2%;
 }
 
@@ -95,13 +98,19 @@ h4 {
   line-height: 20px;
 }
 
+.formHolder {
+  padding: 10% 0;
+}
+
 .inputElements {
-  width: 60%;
+  width: 73%;
   margin: 2% auto;
+  line-height: 28px;
 }
 
 #submitBtn {
   text-align: end;
+  line-height: 20px;
 }
 
 hr {
@@ -119,4 +128,33 @@ hr {
   font-size: 14px;
   font-weight: 600;
   padding: 1%;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #e9d9e9;
+  width: 100%;
+}
+
+footer > p {
+  padding-left: 2%;
+}
+
+@media (min-width: 465px) {
+  body {
+    background-color: rgb(97, 10, 10);
+  }
+  
+  header {
+    width: 70%;
+    background-color: #fff;
+  }
+  
+  section { 
+    width: 60%;
+  }
+  
+  footer {
+    width: 70%;
+  }
 }

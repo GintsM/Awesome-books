@@ -37,6 +37,7 @@ class Build {
     storedBooks.splice(index, 1);
     localStorage.setItem('book', JSON.stringify(storedBooks));
     target.parentElement.parentElement.remove();
+    window.location.reload(false);
   }
 
   // Display on a page
@@ -80,8 +81,12 @@ class Build {
           section.classList.toggle('hide');
         }
       });
+      if (index === 0) {
+        window.location.reload(false);
+      }
       sections[index].classList.toggle('hide');
       Build.showTime(sections[index]);
+      
     }
   }
 
@@ -92,7 +97,7 @@ class Build {
       const timeSpan = document.createElement('span');
       timeSpan.setAttribute('id', 'time');
       parent.appendChild(timeSpan);
-      setInterval(() => { timeSpan.innerHTML = `${DateTime.now().toLocaleString(DateTime.DATETIME_MED)}`; }, 1000);
+      setInterval(() => {timeSpan.innerHTML = `${DateTime.now().toLocaleString(DateTime.DATETIME_MED)}`}, 1000);
     }    
   }
 }
