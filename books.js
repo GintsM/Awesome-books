@@ -74,8 +74,6 @@ class Build {
   static dislpayProper(index) {
     const sections = Array.from(document.querySelectorAll('section'));
     if (!sections[index].classList.contains('hide')) {
-
-      //Here will be function to show msg if you are already in that sect.
     } else {
       sections.forEach((section) => {
         if (!section.classList.contains('hide')) {
@@ -86,7 +84,7 @@ class Build {
         window.location.reload(false);
       }
       sections[index].classList.toggle('hide');
-      Build.showTime(sections[index]);      
+      Build.showTime(sections[index]);
     }
   }
 
