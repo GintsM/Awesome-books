@@ -74,6 +74,9 @@ class Build {
   static dislpayProper(index) {
     const sections = Array.from(document.querySelectorAll('section'));
     if (!sections[index].classList.contains('hide')) {
+
+      //here will be function to show msg if you are in that section
+      
     } else {
       sections.forEach((section) => {
         if (!section.classList.contains('hide')) {
